@@ -160,3 +160,10 @@ let join = (arr) => {
 };
 console.log(join(["h", "o", "l", "a"])); //debe retornar el string "hola".
 console.log(join(["c", "h", "a", "u"])); //debe retornar el string "chau".
+
+let joinReduce = (arr) => {
+  const sum = arr.reduce((acc, cV) => acc + cV, "");
+  return sum;
+};
+console.log(joinReduce(["h", "o", "l", "a"])); //debe retornar el string "hola".
+console.log(joinReduce(["c", "h", "a", "u"])); //debe retornar el string "chau".
