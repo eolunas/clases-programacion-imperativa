@@ -49,6 +49,12 @@ let converMayus = (array) => {
 };
 console.log(converMayus(movies));
 
+let converMayusMap = (array) => {
+  const map1 = array.map((x) => x.toUpperCase());
+  return map1;
+};
+console.log(converMayusMap(movies));
+
 //Mientras trabajabas en el feature anterior, se dio el aviso de que también hay que crear otra estructura similar a la primera, pero con las siguientes películas animadas: "toy story", "finding Nemo", "kung-fu panda", "wally", "fortnite" Por lo tanto, te piden crear una función que reciba dos arrays como parámetros, para poder agregar los elementos contenidos en el segundo array dentro del primero, y así retornar un solo array con todas las películas como sus elementos.
 let animatedMovies = [
   "toy story",
@@ -65,6 +71,12 @@ let addArrays = (arr1, arr2) => {
 
 let allMovies = addArrays(movies, animatedMovies);
 console.log(allMovies);
+
+let addArraysConcat = (arr1, arr2) => {
+  return arr1.concat(arr2);
+};
+let allMoviesConcat = addArraysConcat(movies, animatedMovies);
+console.log(allMoviesConcat);
 
 //Durante el proceso, uno de los desarrolladores advierte que el último elemento del array de películas animadas es un videojuego. Ahora tenés que editar el código y modificarlo de manera que puedas eliminar ese último elemento antes de migrar el contenido al array que contenga todas las películas.
 let itemDeleted = animatedMovies.pop();
@@ -109,6 +121,12 @@ let inversor = (arr) => {
 
 console.log(inversor(movies));
 
+let inversorReverse = (arr) => {
+  return arr.reverse();
+};
+
+console.log(inversorReverse(movies));
+
 //sumaArray(): En este ejercicio, deberás crear una función sumaArray() que acepte un arreglo de números (3 elementos) y devuelva la suma de todos ellos. Ejemplo:
 
 let sumArray = (arr) => {
@@ -122,6 +140,15 @@ let sumArray = (arr) => {
 console.log(sumArray([1, 2, 3])); //6
 console.log(sumArray([10, 3, 10])); // 23
 console.log(sumArray([-5, 100, 19])); // 114
+
+let sumArrayReduce = (arr) => {
+  const sum = arr.reduce((acc, cV) => acc + cV, 0);
+  return sum;
+};
+
+console.log(sumArrayReduce([1, 2, 3])); //6
+console.log(sumArrayReduce([10, 3, 10])); // 23
+console.log(sumArrayReduce([-5, 100, 19])); // 114
 
 //Simulación Array.join(): En este ejercicio deberás crear una función llamada join() que reciba un arreglo de strings de 4 elementos y simule el comportamiento del método Array.join().
 let join = (arr) => {
