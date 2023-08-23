@@ -39,37 +39,53 @@ let banco = {
 };
 
 // Al objeto “banco”, crearle un método llamado consultarCliente, el cual recibirá un nombre (titular) por parámetro, deberá buscarlo en la lista de cuentas y retornar el objeto cliente que corresponda con ese nombre ingresado. Ayuda: let clienteEncontrado = banco.consultarCliente(“Ramon Connell”);
+banco.consultarClienteVanilla = (name) => {
+  for (let index = 0; index < banco.clientes.length; index++) {
+    let customerName = banco.clientes[index].titularCuenta;
+    if (customerName == name) {
+      return banco.clientes[index];
+    }
+  }
+  return "Cliente no encontrado!";
+};
+let clienteEncontradoV = banco.consultarClienteVanilla("Ramon Connell");
+console.log(clienteEncontradoV);
+
 banco.consultarCliente = (name) => {
-  return banco.clientes.find((cliente) => cliente.titularCuenta === name);
+  let customer = banco.clientes.find(
+    (cliente) => cliente.titularCuenta === name
+  );
+  return customer ? customer : "Cliente no encontrado!";
 };
 let clienteEncontrado = banco.consultarCliente("Ramon Connell");
 console.log(clienteEncontrado);
 
 // Crear otro método llamado depósito que recibirá dos parámetros: el titular de cuenta y una cantidad de dinero a depositar. El método debe obtener la cuenta correspondiente y luego sumar la cantidad de dinero a depositar a saldo en pesos. Luego, deberá dar un aviso por la consola con el mensaje “Depósito realizado, su nuevo saldo es: XXXX”.
 banco.deposito = (name, value) => {
-  banco.clientes.find(
-    (cliente) => cliente.titularCuenta === name
-  ).saldoEnPesos += value;
+  let customer = banco.consultarClienteVanilla(name);
+  if (typeof customer === "object") {
+    customer.saldoEnPesos += value;
+    return `Depósito realizado, su nuevo saldo es: ${customer.saldoEnPesos}`;
+  }
+  return customer;
 };
-banco.deposito("Ramon Connell", 1000);
-console.log(clienteEncontrado);
+console.log(banco.deposito("Ramon Connell", 1000));
 
 // Crear un último método llamado extracción que recibirá también dos parámetros: el titular de cuenta y el monto a extraer. El método debe obtener la cuenta correspondiente y restar el monto al saldo actual. En caso de que el resultado sea menor a 0, deberá imprimir un mensaje por la consola de “Fondos insuficientes”. De lo contrario, deberá imprimir “Extracción realizada correctamente, su nuevo saldo es: XXXX”.
 banco.extraccion = (name, value) => {
-  let cliente = banco.clientes.find(
-    (cliente) => cliente.titularCuenta === name
-  );
-  if (cliente.saldoEnPesos < value) {
-    console.log("Fondos insuficientes");
-  } else {
-    cliente.saldoEnPesos -= value;
-    console.log(
-      `Extracción realizada correctamente, su nuevo saldo es: ${cliente.saldoEnPesos}`
-    );
+  let customer = banco.consultarClienteVanilla(name);
+  if (typeof customer === "object") {
+    if (customer.saldoEnPesos < value) {
+      customer = "Fondos insuficientes";
+    } else {
+      customer.saldoEnPesos -= value;
+      customer = `Extracción realizada correctamente, su nuevo saldo es: ${customer.saldoEnPesos}`;
+    }
   }
+  return customer;
 };
-banco.extraccion("Ramon Connell", 1000);
-banco.extraccion("Ramon Connell", 10000);
+console.log(banco.extraccion("Ramon Connell", 1000));
+console.log(banco.extraccion("Ramon Connell", 10000));
 
 // Propiedad única
 // Crear una función llamada propiedadUnica que reciba un arreglo de objetos como parámetro y un string. Esta deberá retornar un nuevo arreglo de objetos, teniendo como parámetro la propiedad que fue pasada como string. Ejemplo:
