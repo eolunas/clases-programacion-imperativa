@@ -1,5 +1,3 @@
-// Instalar prompt Sync npm  i prompt-sync
-
 let a = 2;
 let b = 2;
 
