@@ -1,1 +1,2 @@
-# clase8-loops
+# clase08-arrays
+Manejo de arrays

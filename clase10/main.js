@@ -1,169 +1,163 @@
-//¿Qué devuelven estos códigos?:
-let numbers = [22, 33, 54, 66, 72];
-console.log(numbers[numbers.length]);
+// PRE-PARCIAL
+// 1) Crear un array llamado misMascotas
+let misMascotas = [];
 
-let grupoDeAmigos = [
-  "Harry",
-  "Ron",
-  "Hermione",
-  "Spiderman",
-  "Hulk",
-  "Ironman",
-  "Penélope Glamour",
-  "Pierre Nodoyuna",
-  "Patán",
-];
-console.log(grupoDeAmigos[5]);
+/* 2) Dentro de este array crearemos un objeto literal para cada mascota. Cada objeto deberá tener: 
+    nombre
+    raza
+    edad 
+    sonido
+    un método que nos retorne ese sonido 2 veces 
 
-let str = "un string cualquiera";
-let arrayAleatorio = [
-  "Digital",
-  "House",
-  "true",
-  "string",
-  "123",
-  "false",
-  "54",
-  str,
-];
-console.log(arrayAleatorio[arrayAleatorio.length - 1]);
+    Cuando esté listo, verificar en consola*/
+misMascotas.push(
+  {
+    nombre: "pepe",
+    raza: "golden",
+    edad: 14,
+    sonido: "guau",
+    ruido: function () {
+      return this.sonido + " " + this.sonido;
+    },
+  },
+  {
+    nombre: "garfield",
+    raza: "Gato",
+    edad: 7,
+    sonido: "Miau",
+    ruido: function () {
+      return this.sonido + " " + this.sonido;
+    },
+  },
+  {
+    nombre: "golden",
+    raza: "pez",
+    edad: 1,
+    sonido: "glup",
+    ruido: function () {
+      return this.sonido + " " + this.sonido;
+    },
+  }
+);
 
-//Colecciones de películas (y más...):
-// Crear la estructura adecuada para guardar las siguientes películas:
-// "star wars", "totoro", "rocky", "pulp fiction", "la vida es bella"
-let movies = [
-  "star wars",
-  "totoro",
-  "rocky",
-  "pulp fiction",
-  "la vida es bella",
-];
-console.log(movies[movies.length - 1]);
-
-//Más tarde, de producción dieron el aviso de que las películas deberían estar todas en mayúsculas. Para esto solicitan que crees una función que reciba po parámetro un array y convierta el contenido de cada elemento a mayúsculas.
-let converMayus = (array) => {
-  for (let index = 0; index < array.length; index++) {
-    array[index] = array[index].toUpperCase();
+/* 3) Deberemos crear una función que se llame aumentarEdad que aumente la edad de cada animal en 1. */
+function aumentarEdad(array) {
+  for (let i = 0; i < array.length; i++) {
+    array[i].edad += 1;
   }
   return array;
-};
-console.log(converMayus(movies));
+}
+//console.log(aumentarEdad(misMascotas));
 
-let converMayusMap = (array) => {
-  const map1 = array.map((x) => x.toUpperCase());
-  return map1;
-};
-console.log(converMayusMap(movies));
-
-//Mientras trabajabas en el feature anterior, se dio el aviso de que también hay que crear otra estructura similar a la primera, pero con las siguientes películas animadas: "toy story", "finding Nemo", "kung-fu panda", "wally", "fortnite" Por lo tanto, te piden crear una función que reciba dos arrays como parámetros, para poder agregar los elementos contenidos en el segundo array dentro del primero, y así retornar un solo array con todas las películas como sus elementos.
-let animatedMovies = [
-  "toy story",
-  "finding Nemo",
-  "kung-fu panda",
-  "wally",
-  "fortnite",
-];
-
-let addArrays = (arr1, arr2) => {
-  let newArr = [...arr1, ...arr2];
-  return newArr;
-};
-
-let allMovies = addArrays(movies, animatedMovies);
-console.log(allMovies);
-
-let addArraysConcat = (arr1, arr2) => {
-  return arr1.concat(arr2);
-};
-let allMoviesConcat = addArraysConcat(movies, animatedMovies);
-console.log(allMoviesConcat);
-
-//Durante el proceso, uno de los desarrolladores advierte que el último elemento del array de películas animadas es un videojuego. Ahora tenés que editar el código y modificarlo de manera que puedas eliminar ese último elemento antes de migrar el contenido al array que contenga todas las películas.
-let itemDeleted = animatedMovies.pop();
-console.log(itemDeleted, animatedMovies);
-
-//Finalmente, te envían dos arrays con calificaciones que hacen distintos usuarios del mundo sobre las películas con el siguiente formato:
-
-const asiaScores = [8, 10, 6, 9, 10, 6, 6, 8, 4];
-const euroScores = [8, 10, 6, 8, 10, 6, 7, 9, 5];
-
-//Te piden crear una función que compare las calificaciones e indique si son iguales o diferentes. Te confirman que están en el orden adecuado y que solo traenvalores numéricos del 1 al 10.
-
-let ratingCompare = (arr1, arr2) => {
-  for (let index = 0; index < arr1.length; index++) {
-    if (arr1[index] != arr2[index]) return "diferentes";
+/* 4) Ahora debemos crear otra función, que se llame  aumentarEdad2, que va a hacer un trabajo más fino:
+    Si la mascota tiene menos de 6 años, debe aumentar su edad en 1
+    Si la mascota tiene entre 6 y 10 años, debe aumentar su edad en 2
+    Si la mascota tiene más de 10 años, deberá sumarle la mitad de su edad */
+function aumentarEdad2(array) {
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].edad < 6) array[i].edad += 1;
+    if (array[i].edad >= 6 && array[i].edad <= 10) array[i].edad += 2;
+    if (array[i].edad > 10) array[i].edad += array[i].edad / 2;
   }
-  return "iguales";
-};
+  return array;
+}
+//console.log(aumentarEdad2(misMascotas));
 
-console.log(ratingCompare(asiaScores, asiaScores));
-console.log(ratingCompare(asiaScores, euroScores));
+/* 5) Ahora crearemos una función que va a generar un identificador (ID) en cada objeto, que será secuencial y que empezará en 1. */
+function generarId(array) {
+  for (let i = 1; i <= array.length; i++) {
+    array[i - 1].id = i;
+  }
+  return array;
+}
+//console.log(generarId(misMascotas));
 
-//Extra bonus:
-//Array inverso: En este ejercicio deberás crear una función que devuelva un array con sus elementos invertidos, sin modificarlo. Luego, deberás hacer una función que lo modifique e invierta el orden de sus elementos.
-//Creá la función imprimirInverso que tome un array como argumento y que imprima en la consola cada elemento en orden inverso (no tenés que invertir el array).
-let imprimirInverso = (arr) => {
-  for (let index = 1; index <= arr.length; index++) {
-    console.log(arr[arr.length - index]);
+// EJERCICIOS-CLASE
+
+// Loop de pares
+/* Deberás crear una función llamada loopDePares que reciba como parámetro un número y haga un loop de 0 a 100 mostrando en la consola cada número del loop. En caso de que el número de la iteración sumado con el número pasado por parámetro sea par, mostrará en la consola: "El número X es par". */
+const loopDePares = (num) => {
+  for (let index = 0; index < 100; index++) {
+    (num + index) % 2 == 0
+      ? console.log(`El número ${num + index} es par`)
+      : console.log(index);
   }
 };
-console.log(movies);
-imprimirInverso(movies);
+// loopDePares(2);
 
-//Creá la función inversor que tome un array como argumento y devuelva uno nuevo invertido.
-let inversor = (arr) => {
-  let newArr = [];
-  for (let index = 1; index <= arr.length; index++) {
-    newArr[index - 1] = arr[arr.length - index];
+// Loop de impares con palabra
+/* Deberás crear una función llamada loopDeImpares que reciba como parámetros un número y una palabra, y haga un loop de 0 a 100 mostrando en la consola cada número del loop. Luego, modificar el código para que, en caso de que ese número sumado con el número pasado por parámetro sea impar, muestre en la consola la palabra pasada por parámetro. */
+const loopDeImpares = (num, word) => {
+  for (let index = 0; index < 100; index++) {
+    (num + index) % 2 != 0 ? console.log(word) : console.log(index);
   }
-  return newArr;
 };
+// loopDeImpares(2, "hola");
 
-console.log(inversor(movies));
-
-let inversorReverse = (arr) => {
-  return arr.reverse();
-};
-
-console.log(inversorReverse(movies));
-
-//sumaArray(): En este ejercicio, deberás crear una función sumaArray() que acepte un arreglo de números (3 elementos) y devuelva la suma de todos ellos. Ejemplo:
-
-let sumArray = (arr) => {
+// Sumatoria
+/* Deberás crear una función llamada sumatoria que reciba un número como parámetro y que devuelva la sumatoria de todos sus números anteriores, incluso ese mismo. Ejemplo:*/
+// sumatoria(3) // debe retornar 6 porque hace (1+2+3)
+// sumatoria(8) // debe retornar 36
+let sumattion = (num) => {
   let sum = 0;
-  for (let index = 0; index < arr.length; index++) {
-    sum += arr[index];
+  for (let index = 0; index <= num; index++) {
+    sum += index;
   }
   return sum;
 };
+// console.log(sumattion(8));
 
-console.log(sumArray([1, 2, 3])); //6
-console.log(sumArray([10, 3, 10])); // 23
-console.log(sumArray([-5, 100, 19])); // 114
-
-let sumArrayReduce = (arr) => {
-  const sum = arr.reduce((acc, cV) => acc + cV, 0);
-  return sum;
-};
-
-console.log(sumArrayReduce([1, 2, 3])); //6
-console.log(sumArrayReduce([10, 3, 10])); // 23
-console.log(sumArrayReduce([-5, 100, 19])); // 114
-
-//Simulación Array.join(): En este ejercicio deberás crear una función llamada join() que reciba un arreglo de strings de 4 elementos y simule el comportamiento del método Array.join().
-let join = (arr) => {
-  let sum = "";
-  for (let index = 0; index < arr.length; index++) {
-    sum += arr[index];
+// Nuevo arreglo
+/* Deberás crear una función llamada nuevoArreglo que reciba un número como parámetro y que devuelva un nuevo arreglo con tantos elementos como el número que le hayas pasado. Ejemplo: 
+ nuevoArreglo(5) // debe retornar [1,2,3,4,5]
+ nuevoArreglo(10) // debe retornar [1,2,3,4,5,6,7,8,9,10] */
+let nuevoArreglo = (num) => {
+  const arr = [];
+  for (let index = 1; index <= num; index++) {
+    arr.push(index);
   }
-  return sum;
+  return arr;
 };
-console.log(join(["h", "o", "l", "a"])); //debe retornar el string "hola".
-console.log(join(["c", "h", "a", "u"])); //debe retornar el string "chau".
+// console.log(nuevoArreglo(5));
+// console.log(nuevoArreglo(10));
 
-let joinReduce = (arr) => {
-  const sum = arr.reduce((acc, cV) => acc + cV, "");
-  return sum;
+// Similar String.split()
+/* Deberás crear una función llamada split que reciba un string y simule el comportamiento de la función original. Si no estás seguro de cómo funciona, Google puede ayudarte. Importante: no podés usar el String.split(). Ejemplo:
+split("hola") // debe retornar ["h","o","l","a"]
+split("chau") // debe retornar ["c","h","a","u"] */
+let split = (input) => {
+  let output = [];
+  for (let i = 0; i < input.length; i++) {
+    output.push(input[i]);
+  }
+  return output;
 };
-console.log(joinReduce(["h", "o", "l", "a"])); //debe retornar el string "hola".
-console.log(joinReduce(["c", "h", "a", "u"])); //debe retornar el string "chau".
+
+// console.log(split("hola como estás?"));
+
+// Manejando dos arreglos
+/* Deberás crear una función llamada arrayHandler que reciba dos arreglos de igual largo como parámetros y muestre en la consola "Soy {elemento de array 1} y yo soy {elemento de array 2}". Ejemplo:  arrayHandler([1,2,3,4], ["h","o","l","a"])
+debe mostrar: 
+Soy 1 y yo soy h
+Soy 2 y yo soy o
+Soy 3 y yo soy l
+Soy 4 y yo soy a */
+let arrayHandler = (array1, array2) => {
+  for (let i = 0; i < array1.length; i++) {
+    console.log(`Soy ${array1[i]} y yo soy ${array2[i]}`);
+  }
+};
+//arrayHandler([1, 2, 3, 4], ["h", "o", "l", "a"]);
+
+// Palíndromo
+/* Deberás crear una función llamada palindromo que indique si una palabra es palíndroma o no. Debe retornar "true" en caso de que lo sea, y "false" en caso de que no. Ejemplo: 
+palindromo("anilina") // debe retornar true
+palindromo("Ana")     // debe retornar true
+palindromo("Enrique") // debe retornar false*/
+let palindromo = (str) => {
+  let strReverse = str.split("").reverse().join("");
+  return str === strReverse;
+};
+
+console.log(palindromo("ana"));
+console.log(palindromo("cama"));
