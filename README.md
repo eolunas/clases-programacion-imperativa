@@ -8,3 +8,6 @@
 - clase09-literal-objects
 - clase10-integracion-I
 - clase11-integracion-II
+- clase12-parcial
+- clase13-algoritmos
+- clase14-matrices
