@@ -17,7 +17,7 @@ let m1 = [
 let sumMatriz = (array) => {
   let sum = 0;
   for (let i = 0; i < array.length; i++) {
-    for (let j = 0; j < array[0].length; j++) {
+    for (let j = 0; j < array[i].length; j++) {
       sum += array[i][j];
     }
   }
@@ -52,7 +52,7 @@ let generarMatriz10por10 = () => {
 };
 
 let matriz10por10 = generarMatriz10por10();
-console.log(matriz10por10);
+console.table(matriz10por10);
 
 /* Por último, vamos a generar dos funciones:
 a) Una va a sumar los valores en la diagonal marcada en rojo.*/
