@@ -11,3 +11,6 @@
 - clase12-parcial
 - clase13-algoritmos
 - clase14-matrices
+- clase15-metodos-de-ordenacion
+- clase16-bubbleSort
+- clase17-parcial-final
